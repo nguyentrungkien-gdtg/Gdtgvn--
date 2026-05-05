@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Trung Kiên | Admin Trung Gian</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --gold: #ffcc00; --blue: #00d2ff; --dark-bg: #010409; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--dark-bg);
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Hiệu ứng tiền rơi */
+        .money-rain {
+            position: fixed; top: -50px; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .dollar {
+            position: absolute; color: #2ecc71; font-size: 20px;
+            opacity: 0.8; animation: fall linear infinite;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        .card {
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 30px 15px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.2);
+        }
+
+        .avatar {
+            width: 125px; height: 125px; margin: 0 auto 15px;
+            border-radius: 50%; border: 3px solid var(--gold);
+            overflow: hidden; box-shadow: 0 0 15px var(--gold);
+        }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        h1 { color: var(--gold); font-size: 1.5rem; text-transform: uppercase; margin-bottom: 5px; }
+
+        .badge {
+            background: linear-gradient(90deg, #ffd700, #b8860b);
+            color: #000; font-weight: 800; padding: 7px 18px;
+            border-radius: 25px; font-size: 0.8rem;
+            margin-bottom: 20px; display: inline-block;
+        }
+
+        .links { display: grid; gap: 12px; }
+        .btn {
+            background: rgba(255, 255, 255, 0.05); padding: 14px;
+            border-radius: 15px; display: flex; align-items: center;
+            text-decoration: none; color: #fff; border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+        .btn:hover { background: rgba(255, 204, 0, 0.1); border-color: var(--gold); }
+        
+        .btn i { font-size: 1.3rem; margin-right: 15px; width: 25px; color: var(--blue); }
+        /* Chỉnh màu riêng cho cái tích vàng */
+        .btn i.fa-check-double { color: var(--gold) !important; }
+
+        .btn-content b { font-size: 0.95rem; display: block; text-align: left; }
+        .btn-content span { font-size: 0.7rem; color: #8b949e; display: block; text-align: left; }
+
+        .note { color: #f85149; font-size: 0.75rem; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="money-rain" id="moneyRain"></div>
+
+    <div class="card">
+        <div class="avatar">
+            <img src="avatar.jpg" alt="Nguyễn Trung Kiên">
+        </div>
+        <h1>NGUYỄN TRUNG KIÊN</h1>
+        <div class="badge">🛡️ ADMIN TG BẢO HIỂM 10M</div>
+
+        <div class="links">
+            <a href="https://facebook.com/trungkien1669" class="btn" target="_blank">
+                <i class="fab fa-facebook"></i>
+                <div class="btn-content"><span>Facebook Cá Nhân</span><b>trungkien1669</b></div>
+            </a>
+            <a href="https://zalo.me/0365951114" class="btn" target="_blank">
+                <i class="fas fa-comment-dots"></i>
+                <div class="btn-content"><span>Zalo Liên Hệ</span><b>0365951114</b></div>
+            </a>
+            <div class="btn">
+                <i class="fas fa-check-double"></i> <!-- Đây là cái tích vàng đã sửa -->
+                <div class="btn-content">
+                    <span>Trạng thái</span>
+                    <b style="color: var(--gold);">GIAO DỊCH UY TÍN</b>
+                </div>
+            </div>
+        </div>
+
+        <p class="note">⚠️ Vui lòng check kỹ thông tin tránh mạo danh!</p>
+    </div>
+
+    <script>
+        function createMoney() {
+            const rainContainer = document.getElementById('moneyRain');
+            const icons = ['$', '💵', '💰', '💸'];
+            for (let i = 0; i < 25; i++) {
+                const money = document.createElement('div');
+                money.className = 'dollar';
+                money.innerText = icons[Math.floor(Math.random() * icons.length)];
+                money.style.left = Math.random() * 100 + 'vw';
+                money.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                money.style.animationDelay = Math.random() * 5 + 's';
+                money.style.opacity = Math.random();
+                rainContainer.appendChild(money);
+            }
+        }
+        createMoney();
+    </script>
+</body>
+</html>
